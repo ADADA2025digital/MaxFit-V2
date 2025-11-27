@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './assets/Styles/style.css';
+import './assets/Styles/Style.css';
 import './App.css'
 import Header from './Components/Header';
 import Footer from './Components/Footer';
