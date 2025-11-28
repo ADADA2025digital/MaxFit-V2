@@ -152,13 +152,13 @@ const Home = () => {
 
           {/* Hero Content */}
           <div className=" position-relative text-center text-white d-flex flex-column align-items-center justify-content-center h-100 px-3 px-md-0 ">
-            <div className="pb-0 pb-md-5 pt-0 pt-md-5">
+            <div className="pb-0 pt-5">
               {/* Welcome Badge */}
               <motion.div
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="d-flex align-items-center justify-content-center mb-3"
+                className="d-flex align-items-center justify-content-center mb-3 pt-lg-5 pt-0 mt-0 mt-lg-5"
               >
                 <h6 className="white-back mb-3 light-text py-2 px-3 rounded-5 heading mt-0 mt-md-4">
                   Welcome to Physiocare
@@ -172,7 +172,7 @@ const Home = () => {
                 transition={{ duration: 1, delay: 0.2 }}
                 className="d-flex align-items-center justify-content-center"
               >
-                <p className="display-1 fw-bold">
+                <p className="display-2 fw-bold">
                   <span className="text-white heading">
                     Destination For <br /> Relief & Wellness
                   </span>
