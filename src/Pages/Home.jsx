@@ -136,7 +136,7 @@ const Home = () => {
 
       <div className="container-fluid p-0">
         {/* Hero Section */}
-        <section className="hero-section position-relative py-5 vh-100 align-items-center d-flex justify-content-center ">
+        <section className="hero-section position-relative vh-100 align-items-center d-flex justify-content-center ">
           <video
             className="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
             autoPlay
