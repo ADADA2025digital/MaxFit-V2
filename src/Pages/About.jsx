@@ -366,7 +366,7 @@ const About = () => {
                               <h5 className="fw-bold mb-2 heading text-center">
                                 {service.title}
                               </h5>
-                              <p className="para small mb-3 flex-grow-1 text-center">
+                              <p className="para mb-3 flex-grow-1 text-center">
                                 {service.desc}
                               </p>
                             </div>
@@ -422,7 +422,7 @@ const About = () => {
                   <h5 className="fw-bold mb-2 heading">
                     Ready To Start Your Journey To Recovery?
                   </h5>
-                  <p className="para small mb-3 flex-grow-1">
+                  <p className="para mb-3 flex-grow-1">
                     Contact us today to schedule your initial consultation and
                     take the first step towards a pain-free life.
                   </p>

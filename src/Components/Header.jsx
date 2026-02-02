@@ -153,7 +153,7 @@ export default function Header() {
           <nav
             className={`navbar navbar-expand-lg navbar-light  bg-white shadow-sm  ${
               // Only apply scroll effect classes on desktop
-              !isMobile && isScrolled ? "py-2 scroll-fixed-navbar" : "py-3"
+              !isMobile && isScrolled ? "py-0 scroll-fixed-navbar" : "py-0"
             }`}
           >
             <div className="container">
@@ -162,7 +162,7 @@ export default function Header() {
                 <img
                   src={logo}
                   alt="Logo"
-                  height={!isMobile && isScrolled ? "50" : "60"}
+                  height={!isMobile && isScrolled ? "70" : "70"}
                   
                 />
               </Link>

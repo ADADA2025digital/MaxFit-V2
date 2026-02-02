@@ -610,7 +610,7 @@ const Home = () => {
                               {stat.number}
                               {stat.suffix}
                             </div>
-                            <div className="small light-text">{stat.label}</div>
+                            <div className="light-text">{stat.label}</div>
                           </div>
                         </div>
                       </motion.div>

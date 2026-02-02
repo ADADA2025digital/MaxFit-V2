@@ -22,7 +22,7 @@ const ServiceCard = ({
         <img src={imageSrc} alt={title} className="p-2" />
       </div>
       <h5 className="fw-bold mb-2">{title}</h5>
-      <p className="para small mb-3 flex-grow-1">{description}</p>
+      <p className="para mb-3 flex-grow-1">{description}</p>
       <div
         className={`mt-auto d-flex ${
           center ? "justify-content-center" : "justify-content-start"

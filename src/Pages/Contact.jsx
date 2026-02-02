@@ -116,7 +116,7 @@ export default function ContactInfo() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitAttempted(true); 
+    setSubmitAttempted(true);
 
     if (validateForm()) {
       setIsSubmitting(true);
@@ -278,24 +278,23 @@ export default function ContactInfo() {
               {contactItems.map((item, index) => (
                 <div key={index} className="col-12 col-md-6 col-lg-3">
                   <div className="card h-100  shadow-sm rounded-4 custom-border">
-                    <div className="card-body p-4">
+                    <div className="card-body d-flex flex-column align-items-center justify-content-center p-4">
                       <div className="d-inline-flex align-items-center justify-content-center rounded-4 white-back bg-opacity-10 light-text mb-3 contact-icon-container">
                         <i className={`${item.icon} contact-icon`} />
                       </div>
 
-                      <div className="d-flex align-items-center gap-2">
+                      <div className="d-flex align-items-center justify-content-center gap-2">
                         {item.badge && (
                           <span
                             className="badge bg-success rounded-circle p-1 contact-badge"
                             title="Open Now"
                           />
                         )}
-                        <h5 className="card-title mb-3 fw-bold dark-text">
-                          {item.title}
-                        </h5>
+                        <div className="card-text  mb-3 para">{item.title}</div>
                       </div>
-
-                      <div className="card-text para">{item.content}</div>
+                      <h6 className="card-title text-center fw-semibold dark-text">
+                        {item.content}
+                      </h6>
                     </div>
                   </div>
                 </div>

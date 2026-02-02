@@ -94,7 +94,7 @@ export const statisticsData = [
   {
     id: 3,
     icon: iconSolutionCounter3,
-    targetValue: 950,
+    targetValue: 200,
     suffix: "+",
     label: "Patients Supported",
   },
@@ -110,7 +110,7 @@ export const statisticsBannerData = [
   },
   {
     id: 2,
-    number: "950+",
+    number: "200+",
     label: "Patients Supported",
     icon: iconSolutionCounter2,
   },
