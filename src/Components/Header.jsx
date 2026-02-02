@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import logo from "../assets/Images/maxfit-physiotherapy-logo.png";
-import CustomButton from "../Components/Button";
+import CustomButton from "../components/Button";
 import { FaPhoneAlt } from "react-icons/fa";
 
 export default function Header() {
@@ -11,34 +11,53 @@ export default function Header() {
 
   const navigationItems = [
     { path: "/", label: "Home", hasActiveState: true },
-    { path: "/about", label: "About Us", hasActiveState: true },
-    { path: "/therapist", label: "Therapist", hasActiveState: true },
+    { path: "/about-us", label: "About Us", hasActiveState: true },
+    { path: "/physiotherapist", label: "Physiotherapist", hasActiveState: true },
     { path: "/blog", label: "Blog", hasActiveState: true },
-    { path: "/contact", label: "Contact Us", hasActiveState: true },
+    { path: "/contact-us", label: "Contact Us", hasActiveState: true },
   ];
 
   const socialLinks = [
-    { icon: "bi-facebook", href: "#" },
-    { icon: "bi-twitter", href: "#" },
-    { icon: "bi-instagram", href: "#" },
-    { icon: "bi-youtube", href: "#" },
+    {
+      icon: "bi-facebook",
+      href: "https://www.facebook.com/maxfitphysiotherapy/",
+      label: "Visit Maxfit Physiotherapy on Facebook",
+    },
+    // {
+    //   icon: "bi-twitter",
+    //   href: "#",
+    //   label: "Visit Maxfit Physiotherapy on Twitter",
+    // },
+    {
+      icon: "bi-instagram",
+      href: "https://www.instagram.com/maxfit.physiotherapy/",
+      label: "Visit Maxfit Physiotherapy on Instagram",
+    },
+    // {
+    //   icon: "bi-youtube",
+    //   href: "#",
+    //   label: "Visit Maxfit Physiotherapy on YouTube",
+    // },
   ];
 
   const contactInfo = [
     {
       icon: "bi-telephone-fill",
-      text: "+(123) 698-5245",
-      href: "tel:+1236985245",
+      text: "0433 642 826",
+      href: "tel:0433 642 826",
+      label: "Call Maxfit Physiotherapy at 0433 642 826",
     },
     {
       icon: "bi-envelope-fill",
-      text: "info@domain.com",
-      href: "mailto:info@domain.com",
+      text: "info@maxfitphysiotherapy.com.au",
+      href: "mailto:info@maxfitphysiotherapy.com.au",
+      label: "Email Maxfit Physiotherapy at info@maxfitphysiotherapy.com.au",
     },
     {
       icon: "bi-geo-alt-fill",
-      text: "24/11 Robert Road, New York, USA",
-      href: "https://maps.google.com/?q=24/11+Robert+Road+New+York+USA",
+      text: "37 Desborough Rd, Colyton NSW 2760",
+      href: "https://share.google/kFS4e9obTS31nF560",
+      label: "View Maxfit Physiotherapy location on Google Maps",
     },
   ];
 
@@ -103,6 +122,7 @@ export default function Header() {
                           ? "noopener noreferrer"
                           : undefined
                       }
+                      aria-label={contact.text}
                       className="text-white text-decoration-none"
                     >
                       {contact.text}
@@ -116,8 +136,13 @@ export default function Header() {
                     key={index}
                     href={social.href}
                     className="text-white social-icon"
+                    aria-label={social.label}
+                    target={social.href !== "#" ? "_blank" : undefined}
+                    rel={
+                      social.href !== "#" ? "noopener noreferrer" : undefined
+                    }
                   >
-                    <i className={`${social.icon} fs-5`}></i>
+                    <i className={`${social.icon} fs-5`} aria-hidden="true"></i>
                   </a>
                 ))}
               </div>
@@ -132,12 +157,13 @@ export default function Header() {
             }`}
           >
             <div className="container">
-              <Link className="navbar-brand d-flex align-items-center" to="/">
+              <Link className="navbar-brand d-flex align-items-center" to="/" aria-label="Go to MaxFit home page">
                 {/* Only change logo height on desktop scroll */}
                 <img
                   src={logo}
                   alt="Logo"
                   height={!isMobile && isScrolled ? "50" : "60"}
+                  
                 />
               </Link>
 
@@ -147,6 +173,7 @@ export default function Header() {
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar"
+                aria-label="Open navigation menu"
               >
                 <span className="navbar-toggler-icon"></span>
               </button>
@@ -160,6 +187,7 @@ export default function Header() {
                           item.hasActiveState && location.pathname === item.path
                         }`}
                         to={item.path}
+                        aria-label={`Go to ${item.label} page`}
                       >
                         {item.label}
                       </Link>
@@ -170,9 +198,9 @@ export default function Header() {
 
               <div className="d-none d-lg-flex align-items-center">
                 <CustomButton
-                  text="+(123) 698-5245"
+                  text="0433 642 826"
                   icon={<FaPhoneAlt />}
-                  href="tel:+1236985245"
+                  href="tel:0433 642 826"
                 />
               </div>
             </div>
@@ -186,8 +214,13 @@ export default function Header() {
             aria-labelledby="offcanvasNavbarLabel"
           >
             <div className="offcanvas-header">
-              <Link to="/" onClick={closeOffcanvas}>
-                <img src={logo} alt="Logo" height="60" />
+              <Link to="/" onClick={closeOffcanvas} aria-label="Go to Maxfit Physiotherapy home page">
+                <img
+                  src={logo}
+                  alt="Logo"
+                  height="60"
+                  
+                />
               </Link>
               <button
                 type="button"
@@ -206,6 +239,7 @@ export default function Header() {
                       }`}
                       to={item.path}
                       onClick={closeOffcanvas}
+                      aria-label={`Go to ${item.label} page`}
                     >
                       {item.label}
                     </Link>
@@ -219,8 +253,16 @@ export default function Header() {
                       key={index}
                       href={social.href}
                       className="dark-text social-icon"
+                      aria-label={social.label}
+                      target={social.href !== "#" ? "_blank" : undefined}
+                      rel={
+                        social.href !== "#" ? "noopener noreferrer" : undefined
+                      }
                     >
-                      <i className={`${social.icon} fs-5`}></i>
+                      <i
+                        className={`${social.icon} fs-5`}
+                        aria-hidden="true"
+                      ></i>
                     </a>
                   ))}
                 </div>

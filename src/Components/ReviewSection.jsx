@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReviewCard from "./ReviewCard";
-import { reviewData } from "../Constants/Data";
+import { reviewData } from "../constants/Data";
 
 const ReviewSection = () => {
   const [slideIndex, setSlideIndex] = useState(0);

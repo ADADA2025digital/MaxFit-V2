@@ -2,18 +2,18 @@ import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './assets/Styles/Style.css';
+import './assets/Styles/style.css';
 import './App.css'
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import ScrollToTop from "./Components/ScrollToTop";
-import Home from './Pages/Home';
-import About from './Pages/About';
-import Contact from './Pages/Contact';
-import Therapist from './Pages/Therapist';
-import Blog from './Pages/Blog';
-import BlogDetail from './Pages/BlogDetail';
-import ScrollToTopUp from './Components/ScrollToTopUp';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ScrollToTop from "./components/ScrollToTop";
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Therapist from './pages/Therapist';
+import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
+import ScrollToTopUp from './components/ScrollToTopUp';
 
 function App() {
   return (
@@ -21,12 +21,12 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/service" element={<div>Service/Therapist Page</div>} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/therapist" element={<Therapist />} />
+        <Route path="/about-us" element={<About />} />
+        <Route path="/service" element={<div>Service/physiotherapist Page</div>} />
+        <Route path="/contact-us" element={<Contact />} />
+        <Route path="/physiotherapist" element={<Therapist />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:id" element={<BlogDetail />} />
+<Route path="/blog/:slug" element={<BlogDetail />} />
       </Routes>
       <Footer />
       <ScrollToTop />

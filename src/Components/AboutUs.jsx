@@ -2,18 +2,18 @@ import React from "react";
 import { Figure } from "react-bootstrap";
 import { motion } from "framer-motion";
 import CustomButton from "./Button";
-import useCounterAnimation from "../Hooks/useCounterAnimation";
+import useCounterAnimation from "../hooks/useCounterAnimation";
 import aboutImg from "../assets/Images/about-img.jpg";
 import iconExperience from "../assets/Images/icon-experience.svg";
 import iconAboutUs1 from "../assets/Images/icon-about-us-1.svg";
 import iconAboutUs2 from "../assets/Images/icon-about-us-2.svg";
 import iconAboutUs3 from "../assets/Images/icon-about-us-3.svg";
 import iconAboutUs4 from "../assets/Images/icon-about-us-4.svg";
-import aboutDoctorImg from "../assets/Images/about-doctor-img.jpg";
+import aboutDoctorImg from "../assets/Images/maxfit-physiotherapy-priyanka-verma.jpg";
 import aboutUsBg from "../assets/Images/about-us-bg.svg";
 
 const AboutUs = () => {
-  const [experienceCount, experienceRef] = useCounterAnimation(15, 2500, 0);
+  const [experienceCount, experienceRef] = useCounterAnimation(20, 2500, 0);
 
   return (
     <section className="py-5 position-relative about-section">
@@ -79,17 +79,17 @@ const AboutUs = () => {
 
               {/* Main Title */}
               <h1 className="mb-4 fw-bold display-5 heading">
-                <span className="dark-text">We Are The Best For</span> <br />
-                <span className="light-text">Physiotherapy</span>
+                <span className="dark-text">Empowering You to</span> <br />
+                <span className="light-text">Move Better, Live Stronger</span>
               </h1>
 
               {/* Paragraph */}
               <p className="mb-4 para">
-                We are dedicated to providing exceptional physical therapy
-                services that help our patients recover, rehabilitate, and
-                maintain optimal physical health. Our team of certified
-                therapists uses evidence-based treatments and personalized care
-                plans to ensure the best outcomes for every patient.
+                At MAXFIT Physiotherapy, we help people of all ages improve
+                movement, build strength, and maintain independence. Our care is
+                evidence-based, compassionate, and personalised to your
+                goals-whether you're recovering from an injury, managing chronic
+                pain, or working to move with confidence every day.
               </p>
 
               {/* Services Grid */}
@@ -104,10 +104,13 @@ const AboutUs = () => {
                 className="row g-4 justify-content-center justify-content-lg-start"
               >
                 {[
-                  { icon: iconAboutUs1, text: "Nutrition Strategies" },
-                  { icon: iconAboutUs2, text: "Be Pro Active" },
-                  { icon: iconAboutUs3, text: "Workout Routines" },
-                  { icon: iconAboutUs4, text: "Support & Motivation" },
+                  { icon: iconAboutUs1, text: "Manual Therapy & Pain Relief" },
+                  {
+                    icon: iconAboutUs2,
+                    text: "Exercise Rehab & Strength Building",
+                  },
+                  { icon: iconAboutUs3, text: "Posture & Movement Retraining" },
+                  { icon: iconAboutUs4, text: "Injury Prevention & Education" },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -146,17 +149,20 @@ const AboutUs = () => {
                       className="img-fluid rounded-circle shadow me-0 me-sm-3 mb-3 mb-sm-0"
                       style={{ width: "80px", height: "80px" }}
                     />
+
                     <div>
-                      <h4 className="mb-1 dark-text">Dr. Jamie Smith</h4>
+                      <h4 className="mb-1 dark-text">Priyanka Verma</h4>
                       <h6 className="mb-0 light-text">
-                        Physiotherapy Specialist
+                        Founder & Principal Physiotherapist
                       </h6>
                     </div>
                   </div>
                   <div className="d-flex justify-content-center justify-content-lg-end">
                     <CustomButton
-                      text="Make an Appointment"
+                      text="Book Appointment"
                       icon={<i className="bi bi-arrow-right"></i>}
+                      href="/contact-us"
+                      ariaLabel="Book an appointment with Maxfit Physiotherapy"
                     />
                   </div>
                 </div>

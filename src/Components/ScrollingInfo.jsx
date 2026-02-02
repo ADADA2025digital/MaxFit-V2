@@ -1,5 +1,5 @@
 import React from "react";
-import { scrollingInfoData } from "../Constants/Data";
+import { scrollingInfoData } from "../constants/Data";
 import scroll1 from "../assets/Images/icon-sparkles.svg";
 
 const ScrollingInfo = () => {

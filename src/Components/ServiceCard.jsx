@@ -10,7 +10,7 @@ const ServiceCard = ({
 }) => {
   return (
     <div
-      className={`service-card position-relative overflow-hidden d-flex flex-column custom-border rounded-4 p-4 ${
+      className={`service-card position-relative overflow-hidden h-100 d-flex flex-column custom-border rounded-4 p-4 ${
         center ? "text-center" : ""
       }`}
     >

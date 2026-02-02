@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Figure } from "react-bootstrap";
-import Banner from "../Components/Banner";
-import CustomButton from "../Components/Button";
-import ScrollingInfo from "../Components/ScrollingInfo";
-import { pageBannerData } from "../Constants/Data";
+import Banner from "../components/Banner";
+import CustomButton from "../components/Button";
+import ScrollingInfo from "../components/ScrollingInfo";
+import { pageBannerData } from "../constants/Data";
 import ImageContact from "../assets/Images/contact-us-img.jpg";
 import { Helmet } from "react-helmet-async";
 
@@ -21,6 +21,7 @@ export default function ContactInfo() {
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitAttempted, setSubmitAttempted] = useState(false);
 
   // Validation patterns
   const validationPatterns = {
@@ -43,17 +44,29 @@ export default function ContactInfo() {
   // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
 
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // Only validate live after the first submit attempt
+    if (submitAttempted) {
+      setErrors((prev) => {
+        const updated = { ...prev };
+
+        const trimmed = value.trim();
+
+        if (!trimmed) {
+          updated[name] = "Please fill out this field";
+        } else if (
+          validationPatterns[name] &&
+          !validationPatterns[name].test(trimmed)
+        ) {
+          updated[name] = validationMessages[name];
+        } else {
+          updated[name] = "";
+        }
+
+        return updated;
+      });
     }
   };
 
@@ -103,11 +116,11 @@ export default function ContactInfo() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmitAttempted(true); 
 
     if (validateForm()) {
       setIsSubmitting(true);
 
-      // Simulate form submission
       setTimeout(() => {
         alert("Form submitted successfully!");
         setFormData({
@@ -117,6 +130,8 @@ export default function ContactInfo() {
           subject: "",
           message: "",
         });
+        setErrors({});
+        setSubmitAttempted(false);
         setIsSubmitting(false);
       }, 1000);
     }
@@ -127,7 +142,7 @@ export default function ContactInfo() {
       type: "location",
       icon: "bi bi-geo-alt-fill",
       title: "Location",
-      content: "24/11 Robert Road, New York, USA",
+      content: "37 Desborough Rd, Colyton NSW 2760",
       badge: false,
     },
     {
@@ -137,17 +152,18 @@ export default function ContactInfo() {
       content: (
         <>
           <a
-            href="mailto:info@domainname.com"
+            href="mailto:info@maxfitphysiotherapy.com.au"
             className="d-block para text-decoration-none"
+            aria-label="Email Maxfit Physiotherapy at info@maxfitphysiotherapy.com.au"
           >
-            info@domainname.com
+            info@maxfitphysiotherapy.com.au
           </a>
-          <a
+          {/* <a
             href="mailto:sales@domainname.com"
             className="d-block para text-decoration-none"
           >
             sales@domainname.com
-          </a>
+          </a> */}
         </>
       ),
       badge: false,
@@ -159,17 +175,18 @@ export default function ContactInfo() {
       content: (
         <>
           <a
-            href="tel:+01789854856"
+            href="tel:0433642826"
             className="d-block para text-decoration-none"
+            aria-label="Call Maxfit Physiotherapy on 0433 642 826"
           >
-            (+01) 789 854 856
+            0433 642 826
           </a>
-          <a
+          {/* <a
             href="tel:+02895867781"
             className="d-block para text-decoration-none"
           >
             (+02) 895 867 781
-          </a>
+          </a> */}
         </>
       ),
       badge: false,
@@ -180,8 +197,8 @@ export default function ContactInfo() {
       title: "Work Hours",
       content: (
         <>
-          <div>Mon to Fri: 10:00 To 6:00</div>
-          <div>Sat: 10:00AM To 3:00PM</div>
+          <div>Mon to Fri: 9:00 To 6:00 PM</div>
+          <div>Sat: 9:00 AM To 1:00 PM</div>
           <div>Sun: Closed</div>
         </>
       ),
@@ -193,49 +210,64 @@ export default function ContactInfo() {
     <>
       <Helmet>
         {/* Basic SEO */}
-        <title>Maxfit</title>
+        <title>
+          Contact Us | MAXFIT Physiotherapy | Personalised Physiotherapy &
+          Rehabilitation Care
+        </title>
+
         <meta
           name="description"
-          content="Get personalized diet plans, expert tips, and nutritional guidance from certified dietitians. Start your health journey today!"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
+
         <meta
           name="keywords"
-          content="Tamildietitian, Dietitian Anu, Gut Detox, Gut Expert, Collagen Expert, Nutrition, Detox Diet, Anti-inflammatory diet, Holistic health, Wellness retreat, Cellular Nutrition, Cellular Detox, Gut health"
+          content="maxfit physiotherapy, physiotherapy near me, physiotherapy clinic near me, physiotherapy treatment, musculoskeletal physiotherapy, women’s health physiotherapy, elderly physiotherapy care, physiotherapy for arthritis, physiotherapy exercises, physiotherapy exercises for lower back pain, basic physiotherapy exercises, physical therapist vs physiotherapist, what is matrix therapy in physiotherapy, physiotherapy machine, chest physiotherapy, injury rehabilitation physiotherapy, chronic pain physiotherapy, post injury physiotherapy care, evidence based physiotherapy, personalised physiotherapy treatment"
         />
+
+        <meta name="author" content="MAXFIT Physiotherapy" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://maxfitphysiotherapy.com.au/" />
 
         {/* Open Graph */}
         <meta
           property="og:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy | Expert, Personalised Physiotherapy Care"
         />
         <meta
           property="og:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dietitiananu.com.au" />
+        <meta property="og:url" content="https://maxfitphysiotherapy.com/" />
+        <meta property="og:site_name" content="MAXFIT Physiotherapy" />
+
+        {/* Social Links */}
         <meta
-          property="og:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
+          property="og:see_also"
+          content="https://www.instagram.com/maxfit.physiotherapy/"
+        />
+        <meta
+          property="og:see_also"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
+        {/* Facebook  */}
+        <meta property="fb:app_id" content="#" />
         <meta
-          name="twitter:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          property="fb:admins"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
+
+        {/* Instagram */}
+        <meta name="instagram:title" content="MAXFIT Physiotherapy" />
         <meta
-          name="twitter:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          name="instagram:description"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
-        <meta
-          name="twitter:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
-        />
-        <meta name="twitter:site" content="@anu_collagen24" />
-        <meta name="twitter:creator" content="@anu_collagen24" />
+        <meta name="instagram:site" content="maxfit.physiotherapy" />
       </Helmet>
+
       <div className="container-fluid p-0">
         <Banner bannerData={pageBannerData.contact} />
 
@@ -247,9 +279,7 @@ export default function ContactInfo() {
                 <div key={index} className="col-12 col-md-6 col-lg-3">
                   <div className="card h-100  shadow-sm rounded-4 custom-border">
                     <div className="card-body p-4">
-                      <div
-                        className="d-inline-flex align-items-center justify-content-center rounded-4 white-back bg-opacity-10 light-text mb-3 contact-icon-container"
-                      >
+                      <div className="d-inline-flex align-items-center justify-content-center rounded-4 white-back bg-opacity-10 light-text mb-3 contact-icon-container">
                         <i className={`${item.icon} contact-icon`} />
                       </div>
 
@@ -279,9 +309,7 @@ export default function ContactInfo() {
                   key={index}
                   className="col-auto d-flex flex-column align-items-center justify-content-center"
                 >
-                  <div
-                    className="d-inline-flex align-items-center justify-content-center rounded-4 bg-success bg-opacity-10 text-success mb-3 contact-icon-container"
-                  >
+                  <div className="d-inline-flex align-items-center justify-content-center rounded-4 bg-success bg-opacity-10 text-success mb-3 contact-icon-container">
                     <i className={`${item.icon} contact-mobile-icon`} />
                   </div>
                   <p className="small mb-3 fw-bold">{item.title}</p>
@@ -295,9 +323,7 @@ export default function ContactInfo() {
           <div className="container">
             <div className="row">
               <div className="col-md-6">
-                <Figure
-                  className="image-anime reveal box rounded-5 w-100 image-figure"
-                >
+                <Figure className="image-anime reveal box rounded-5 w-100 image-figure">
                   <img
                     src={ImageContact}
                     className="img-fluid rounded-3 shadow w-100 contact-image"
@@ -317,7 +343,7 @@ export default function ContactInfo() {
                 </h1>
 
                 {/* Contact Form */}
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} noValidate>
                   <div className="row mb-4">
                     <div className="col-md-6">
                       <input
@@ -326,7 +352,7 @@ export default function ContactInfo() {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Enter Name"
-                        className={`form-control p-3 ${errors.name ? '' : ''}`}
+                        className={`form-control p-3 ${errors.name ? "" : ""}`}
                       />
                       {errors.name && (
                         <div className="fs-6 mt-1 text-danger">
@@ -341,7 +367,7 @@ export default function ContactInfo() {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="Enter Email"
-                        className={`form-control p-3 ${errors.email ? '' : ''}`}
+                        className={`form-control p-3 ${errors.email ? "" : ""}`}
                       />
                       {errors.email && (
                         <div className="fs-6 mt-1 text-danger">
@@ -357,9 +383,9 @@ export default function ContactInfo() {
                         type="tel"
                         name="phone"
                         value={formData.phone}
-                        onChange={handleInputChange}                     
+                        onChange={handleInputChange}
                         placeholder="Phone Number"
-                        className={`form-control p-3 ${errors.phone ? '' : ''}`}
+                        className={`form-control p-3 ${errors.phone ? "" : ""}`}
                       />
                       {errors.phone && (
                         <div className="fs-6 mt-1 text-danger">
@@ -374,7 +400,7 @@ export default function ContactInfo() {
                         value={formData.subject}
                         onChange={handleInputChange}
                         placeholder="Subject"
-                        className={`form-control p-3 ${errors.subject ? ' ' : ''}`}
+                        className={`form-control p-3 ${errors.subject ? " " : ""}`}
                       />
                       {errors.subject && (
                         <div className="fs-6 mt-1 text-danger">
@@ -391,19 +417,16 @@ export default function ContactInfo() {
                       onChange={handleInputChange}
                       rows="5"
                       placeholder="Your Message"
-                      className={`form-control p-3 ${errors.message ? '' : ''}`}
+                      className={`form-control p-3 ${errors.message ? "" : ""}`}
                     ></textarea>
                     {errors.message && (
-                      <div className="text-danger mt-1"
-                       
-                      >
-                        {errors.message}
-                      </div>
+                      <div className="text-danger mt-1">{errors.message}</div>
                     )}
                   </div>
 
                   <div className="ms-lg-auto mt-5">
                     <CustomButton
+                      type="submit"
                       text={isSubmitting ? "Sending..." : "Send Message"}
                       icon={
                         !isSubmitting && <i className="bi bi-arrow-right"></i>
@@ -420,7 +443,7 @@ export default function ContactInfo() {
         <section className="pt-5 ">
           <iframe
             title="Google Map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3316.107461939068!2d150.7968057754332!3d-33.78372301465693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129a9d8445d9cd%3A0xf8b4fc5ff5c9705c!2s37%20Desborough%20Rd%2C%20Colyton%20NSW%202760%2C%20Australia!5e0!3m2!1sen!2slk!4v1757699398800!5m2!1sen!2slk"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3316.1072882600074!2d150.7993807!3d-33.7837275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129a9d8445d9cd%3A0xf8b4fc5ff5c9705c!2s37%20Desborough%20Rd%2C%20Colyton%20NSW%202760%2C%20Australia!5e0!3m2!1sen!2slk!4v1770023746070!5m2!1sen!2slk"
             width="100%"
             height="600"
             className="map-iframe"

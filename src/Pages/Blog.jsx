@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { pageBannerData, blogData } from "../Constants/Data";
-import Banner from "../Components/Banner";
-import ScrollingInfo from "../Components/ScrollingInfo";
-import NewsBlogCard from "../Components/NewsBlogCard";
+import Banner from "../components/Banner";
+import ScrollingInfo from "../components/ScrollingInfo";
+import NewsBlogCard from "../components/NewsBlogCard";
 import { Pagination } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
@@ -31,7 +31,7 @@ const Blog = () => {
         key="prev"
         onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
-      />
+      />,
     );
 
     // Page numbers
@@ -48,7 +48,7 @@ const Blog = () => {
             onClick={() => handlePageChange(page)}
           >
             {page}
-          </Pagination.Item>
+          </Pagination.Item>,
         );
       } else if (page === currentPage - 2 || page === currentPage + 2) {
         items.push(<Pagination.Ellipsis key={`ellipsis-${page}`} />);
@@ -63,7 +63,7 @@ const Blog = () => {
           currentPage < totalPages && handlePageChange(currentPage + 1)
         }
         disabled={currentPage === totalPages}
-      />
+      />,
     );
 
     return items;
@@ -73,49 +73,64 @@ const Blog = () => {
     <>
       <Helmet>
         {/* Basic SEO */}
-        <title>Maxfit</title>
+        <title>
+          Blogs | MAXFIT Physiotherapy | Personalised Physiotherapy &
+          Rehabilitation Care
+        </title>
+
         <meta
           name="description"
-          content="Get personalized diet plans, expert tips, and nutritional guidance from certified dietitians. Start your health journey today!"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
+
         <meta
           name="keywords"
-          content="Tamildietitian, Dietitian Anu, Gut Detox, Gut Expert, Collagen Expert, Nutrition, Detox Diet, Anti-inflammatory diet, Holistic health, Wellness retreat, Cellular Nutrition, Cellular Detox, Gut health"
+          content="maxfit physiotherapy, physiotherapy near me, physiotherapy clinic near me, physiotherapy treatment, musculoskeletal physiotherapy, women’s health physiotherapy, elderly physiotherapy care, physiotherapy for arthritis, physiotherapy exercises, physiotherapy exercises for lower back pain, basic physiotherapy exercises, physical therapist vs physiotherapist, what is matrix therapy in physiotherapy, physiotherapy machine, chest physiotherapy, injury rehabilitation physiotherapy, chronic pain physiotherapy, post injury physiotherapy care, evidence based physiotherapy, personalised physiotherapy treatment"
         />
+
+        <meta name="author" content="MAXFIT Physiotherapy" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://maxfitphysiotherapy.com.au/" />
 
         {/* Open Graph */}
         <meta
           property="og:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy | Expert, Personalised Physiotherapy Care"
         />
         <meta
           property="og:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dietitiananu.com.au" />
+        <meta property="og:url" content="https://maxfitphysiotherapy.com/" />
+        <meta property="og:site_name" content="MAXFIT Physiotherapy" />
+
+        {/* Social Links */}
         <meta
-          property="og:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
+          property="og:see_also"
+          content="https://www.instagram.com/maxfit.physiotherapy/"
+        />
+        <meta
+          property="og:see_also"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
+        {/* Facebook  */}
+        <meta property="fb:app_id" content="#" />
         <meta
-          name="twitter:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          property="fb:admins"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
+
+        {/* Instagram */}
+        <meta name="instagram:title" content="MAXFIT Physiotherapy" />
         <meta
-          name="twitter:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          name="instagram:description"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
-        <meta
-          name="twitter:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
-        />
-        <meta name="twitter:site" content="@anu_collagen24" />
-        <meta name="twitter:creator" content="@anu_collagen24" />
+        <meta name="instagram:site" content="maxfit.physiotherapy" />
       </Helmet>
+
       <div className="container-fluid p-0">
         {/* Banner Section */}
         <Banner bannerData={pageBannerData.blog} />

@@ -1,17 +1,24 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Figure } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { blogData } from "../Constants/Data";
-import ScrollingInfo from "../Components/ScrollingInfo";
+import { blogData } from "../constants/Data";
+import ScrollingInfo from "../components/ScrollingInfo";
 import { Helmet } from "react-helmet-async";
 
+const slugify = (text = "") =>
+  text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-");
+
 const BlogDetail = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
 
   // Find the blog post by ID
-  const blog = blogData.find((post) => post.id === parseInt(id));
+  const blog = blogData.find((post) => slugify(post.title) === slug);
 
   // If blog not found, redirect to blog page
   if (!blog) {
@@ -32,60 +39,96 @@ const BlogDetail = () => {
     <>
       <Helmet>
         {/* Basic SEO */}
-        <title>Maxfit</title>
+        <title>
+          MAXFIT Physiotherapy | Personalised Physiotherapy & Rehabilitation
+          Care
+        </title>
+
         <meta
           name="description"
-          content="Get personalized diet plans, expert tips, and nutritional guidance from certified dietitians. Start your health journey today!"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
+
         <meta
           name="keywords"
-          content="Tamildietitian, Dietitian Anu, Gut Detox, Gut Expert, Collagen Expert, Nutrition, Detox Diet, Anti-inflammatory diet, Holistic health, Wellness retreat, Cellular Nutrition, Cellular Detox, Gut health"
+          content="maxfit physiotherapy, physiotherapy near me, physiotherapy clinic near me, physiotherapy treatment, musculoskeletal physiotherapy, women’s health physiotherapy, elderly physiotherapy care, physiotherapy for arthritis, physiotherapy exercises, physiotherapy exercises for lower back pain, basic physiotherapy exercises, physical therapist vs physiotherapist, what is matrix therapy in physiotherapy, physiotherapy machine, chest physiotherapy, injury rehabilitation physiotherapy, chronic pain physiotherapy, post injury physiotherapy care, evidence based physiotherapy, personalised physiotherapy treatment"
         />
+
+        <meta name="author" content="MAXFIT Physiotherapy" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://maxfitphysiotherapy.com.au/" />
 
         {/* Open Graph */}
         <meta
           property="og:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy | Expert, Personalised Physiotherapy Care"
         />
         <meta
           property="og:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dietitiananu.com.au" />
+        <meta property="og:url" content="https://maxfitphysiotherapy.com/" />
+        <meta property="og:site_name" content="MAXFIT Physiotherapy" />
+
+        {/* Social Links */}
         <meta
-          property="og:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
+          property="og:see_also"
+          content="https://www.instagram.com/maxfit.physiotherapy/"
+        />
+        <meta
+          property="og:see_also"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
+        {/* Facebook  */}
+        <meta property="fb:app_id" content="#" />
         <meta
-          name="twitter:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          property="fb:admins"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
+
+        {/* Instagram */}
+        <meta name="instagram:title" content="MAXFIT Physiotherapy" />
         <meta
-          name="twitter:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          name="instagram:description"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
-        <meta
-          name="twitter:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
-        />
-        <meta name="twitter:site" content="@anu_collagen24" />
-        <meta name="twitter:creator" content="@anu_collagen24" />
+        <meta name="instagram:site" content="maxfit.physiotherapy" />
       </Helmet>
+
       <div className="container-fluid p-0">
         {/* Banner Section */}
-        <section className="py-5 text-white about-banner-section position-relative white-back">
-          <motion.h1
-            className="display-4 fw-bold dark-text mb-4 text-center"
-            initial={{ opacity: 0, y: -40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-          >
-            {blog.title}
-          </motion.h1>
+        <section className="py-5 mt-5 text-white about-banner-section position-relative white-back">
+          <div className="container py-5 mt-5">
+            <div className="row mt-0 mt-md-4 align-items-center">
+              {/* Page Title and Breadcrumb */}
+              <div className="col-12 text-center">
+                {/* Page Title */}
+                <h1 className="display-4 fw-bold mt-4 mb-3 text-center dark-text">
+                  {blog.title}
+                </h1>
+
+                {/* Breadcrumb */}
+                <nav aria-label="breadcrumb">
+                  <ol className="breadcrumb mb-0 justify-content-center dark-text">
+                    <li className="breadcrumb-item">
+                      <Link to="/" className="text-decoration-none dark-text">
+                        Home
+                      </Link>
+                    </li>
+                    <span className="heading mx-3">/</span>
+                    <li
+                      className="breadcrumb-item active dark-text"
+                      aria-current="page"
+                    >
+                      {blog.title}
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Blog Detail Section */}
@@ -101,14 +144,11 @@ const BlogDetail = () => {
                   viewport={{ once: true }}
                   className="mb-5"
                 >
-                  <Figure
-                    className="image-anime reveal box rounded-5 w-100 position-relative overflow-hidden image-figure"
-                  >
+                  <Figure className="image-anime reveal box rounded-5 w-100 position-relative overflow-hidden image-figure">
                     <img
                       src={blog.image}
                       alt={blog.alt}
                       className="img-fluid image-figure"
-                  
                     />
                   </Figure>
                 </motion.div>

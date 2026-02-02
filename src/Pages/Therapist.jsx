@@ -1,13 +1,13 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { pageBannerData } from "../Constants/Data";
-import Banner from "../Components/Banner";
-import ScrollingInfo from "../Components/ScrollingInfo";
-import CustomButton from "../Components/Button";
-import ReviewSection from "../Components/ReviewSection";
+import { faqData, pageBannerData } from "../constants/Data";
+import Banner from "../components/Banner";
+import ScrollingInfo from "../components/ScrollingInfo";
+import CustomButton from "../components/Button";
+import ReviewSection from "../components/ReviewSection";
 import { Figure } from "react-bootstrap";
-import Therapist1 from "../assets/Images/team-1.jpg";
+import Therapist1 from "../assets/Images/maxfit-physiotherapy-priyanka-verma.jpg";
 import Award1 from "../assets/Images/icon-award-1.svg";
 import Award2 from "../assets/Images/icon-award-2.svg";
 import Award3 from "../assets/Images/icon-award-3.svg";
@@ -15,55 +15,71 @@ import Award4 from "../assets/Images/icon-award-4.svg";
 import Calender from "../assets/Images/icon-cta.svg";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import FAQAccordion from "../components/FAQAccordion";
 
 const Therapist = () => {
   return (
     <>
       <Helmet>
         {/* Basic SEO */}
-        <title>Maxfit</title>
+        <title>
+          Therapist | MAXFIT Physiotherapy | Personalised Physiotherapy &
+          Rehabilitation Care
+        </title>
+
         <meta
           name="description"
-          content="Get personalized diet plans, expert tips, and nutritional guidance from certified dietitians. Start your health journey today!"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
+
         <meta
           name="keywords"
-          content="Tamildietitian, Dietitian Anu, Gut Detox, Gut Expert, Collagen Expert, Nutrition, Detox Diet, Anti-inflammatory diet, Holistic health, Wellness retreat, Cellular Nutrition, Cellular Detox, Gut health"
+          content="maxfit physiotherapy, physiotherapy near me, physiotherapy clinic near me, physiotherapy treatment, musculoskeletal physiotherapy, women’s health physiotherapy, elderly physiotherapy care, physiotherapy for arthritis, physiotherapy exercises, physiotherapy exercises for lower back pain, basic physiotherapy exercises, physical therapist vs physiotherapist, what is matrix therapy in physiotherapy, physiotherapy machine, chest physiotherapy, injury rehabilitation physiotherapy, chronic pain physiotherapy, post injury physiotherapy care, evidence based physiotherapy, personalised physiotherapy treatment"
         />
+
+        <meta name="author" content="MAXFIT Physiotherapy" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://maxfitphysiotherapy.com.au/" />
 
         {/* Open Graph */}
         <meta
           property="og:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy | Expert, Personalised Physiotherapy Care"
         />
         <meta
           property="og:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dietitiananu.com.au" />
+        <meta property="og:url" content="https://maxfitphysiotherapy.com/" />
+        <meta property="og:site_name" content="MAXFIT Physiotherapy" />
+
+        {/* Social Links */}
         <meta
-          property="og:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
+          property="og:see_also"
+          content="https://www.instagram.com/maxfit.physiotherapy/"
+        />
+        <meta
+          property="og:see_also"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
+        {/* Facebook  */}
+        <meta property="fb:app_id" content="#" />
         <meta
-          name="twitter:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          property="fb:admins"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
+
+        {/* Instagram */}
+        <meta name="instagram:title" content="MAXFIT Physiotherapy" />
         <meta
-          name="twitter:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          name="instagram:description"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
-        <meta
-          name="twitter:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
-        />
-        <meta name="twitter:site" content="@anu_collagen24" />
-        <meta name="twitter:creator" content="@anu_collagen24" />
+        <meta name="instagram:site" content="maxfit.physiotherapy" />
       </Helmet>
+
       <div className="container-fluid p-0">
         {/* Banner Section */}
         <Banner bannerData={pageBannerData.therapist} />
@@ -72,10 +88,7 @@ const Therapist = () => {
         <section className="py-5">
           <div className="container rounded-5 d-flex flex-column flex-md-row">
             {/* Image Section */}
-            <Figure
-              className="image-anime reveal box position-relative d-inline-flex overflow-hidden col-12 col-md-5 white-back rounded-start-5 image-figure therapist-image"
-             
-            >
+            <Figure className="image-anime reveal box position-relative d-inline-flex overflow-hidden col-12 col-md-5 white-back rounded-start-5 image-figure therapist-image">
               <img
                 src={Therapist1}
                 alt="Physiotherapy"
@@ -89,13 +102,18 @@ const Therapist = () => {
               style={{ height: "600px" }}
             >
               <div>
-                <h1 className="text-white heading">Dr. Emily Johnson</h1>
-                <h6 className="text-white">Senior Physiotherapist</h6>
+                <h1 className="text-white heading">Priyanka Verma</h1>
+                <h6 className="text-white">
+                  Founder & Principal Physiotherapist
+                </h6>
                 <p className="text-white mt-5 fs-5">
-                  A physiotherapist will ask you about your current level of
-                  activity and any particular problems you're having. They will
-                  also examine your joints to assess your muscle strength And
-                  the Range.
+                  With over 20 years of clinical experience, Priyanka Verma is
+                  known for a holistic and client-focused approach grounded in
+                  evidence-based care. She has worked across diverse healthcare
+                  settings, managed complex caseloads, and led multidisciplinary
+                  teams with excellence. Her focus spans musculoskeletal care,
+                  women’s health, and aged care—supporting clients to reduce
+                  pain, restore mobility, and maintain long-term independence.
                 </p>
               </div>
 
@@ -108,24 +126,25 @@ const Therapist = () => {
               >
                 <ul className="text-white fs-5 list-unstyled ">
                   <li>
-                    <span>Position</span>
+                    <span>Position:</span>
                   </li>
                   <li className="mt-2">
-                    <span>Experience</span>
+                    <span>Experience:</span>
                   </li>
                   <li className="mt-2">
-                    <span>Email</span>
+                    <span>Special Interests:</span>
                   </li>
                 </ul>
+
                 <ul className="text-white fs-5 list-unstyled ms-3">
                   <li>
-                    <span> Physiotherapist</span>
+                    <span>Principal Physiotherapist</span>
                   </li>
                   <li className="mt-2">
-                    <span>06 Years</span>
+                    <span>20+ Years</span>
                   </li>
                   <li className="mt-2">
-                    <span>domain@gmail.com</span>
+                    <span>Musculoskeletal • Women’s Health • Aged Care</span>
                   </li>
                 </ul>
               </motion.div>
@@ -137,18 +156,37 @@ const Therapist = () => {
                 transition={{ delay: 0.6, duration: 0.7 }}
                 viewport={{ once: true }}
               >
-                <a href="#" className="text-white social-icon">
-                  <i className="bi bi-facebook fs-5"></i>
+                <a
+                  href="https://www.facebook.com/maxfitphysiotherapy/"
+                  className="text-white social-icon"
+                  aria-label="Visit Maxfit Physiotherapy on Facebook"
+                >
+                  <i className="bi bi-facebook fs-5" aria-hidden="true"></i>
                 </a>
-                <a href="#" className="text-white social-icon">
-                  <i className="bi bi-twitter fs-5"></i>
+
+                {/* <a
+                  href="#"
+                  className="text-white social-icon"
+                  aria-label="Visit Maxfit Physiotherapy on Twitter"
+                >
+                  <i className="bi bi-twitter fs-5" aria-hidden="true"></i>
+                </a> */}
+
+                <a
+                  href="https://www.instagram.com/maxfit.physiotherapy/"
+                  className="text-white social-icon"
+                  aria-label="Visit Maxfit Physiotherapy on Instagram"
+                >
+                  <i className="bi bi-instagram fs-5" aria-hidden="true"></i>
                 </a>
-                <a href="#" className="text-white social-icon">
-                  <i className="bi bi-instagram fs-5"></i>
-                </a>
-                <a href="#" className="text-white social-icon">
-                  <i className="bi bi-youtube fs-5"></i>
-                </a>
+
+                {/* <a
+                  href="#"
+                  className="text-white social-icon"
+                  aria-label="Visit Maxfit Physiotherapy on YouTube"
+                >
+                  <i className="bi bi-youtube fs-5" aria-hidden="true"></i>
+                </a> */}
               </motion.div>
             </div>
           </div>
@@ -170,15 +208,18 @@ const Therapist = () => {
                     Personal Info
                   </h2>
                   <p className="mb-3 para">
-                    Consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore of magna aliqua. Ut enim ad
-                    minim veniam, made of owl the quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea dolor commodo
-                    consequat.
+                    Priyanka Verma is the Founder & Principal Physiotherapist at
+                    MAXFIT Physiotherapy, with over 20 years of clinical
+                    experience across diverse healthcare settings. She is known
+                    for a holistic, client-focused approach that combines
+                    clinical excellence with genuine compassion.
                   </p>
                   <p className="para">
-                    Consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore of magna aliqua.
+                    Priyanka is passionate about musculoskeletal care, women’s
+                    health, and aged care. Her goal is to help every client
+                    reduce pain, restore movement, improve mobility, and
+                    maintain long-term independence through personalised,
+                    evidence-based treatment plans.
                   </p>
                 </div>
 
@@ -190,11 +231,15 @@ const Therapist = () => {
                   viewport={{ once: true }}
                 >
                   <h2 className="mb-3 heading fw-bold dark-text mt-4">
-                    Awards &amp; Honor
+                    Professional Recognition & Training
                   </h2>
                   <p className="mb-4 para">
-                    You to resume or maintain a active and power independent
-                    life both at home &amp; work.
+                    Priyanka’s practice is grounded in integrity, empathy, and
+                    clinical excellence. She is committed to continuous
+                    professional development and advanced training in areas
+                    including pelvic floor therapy, chronic pain management, and
+                    musculoskeletal rehabilitation—ensuring every client
+                    receives evidence-based, up-to-date care.
                   </p>
 
                   <div className="row">
@@ -227,12 +272,24 @@ const Therapist = () => {
                   </h2>
 
                   {[
-                    { skill: "Patient Diagnosis", value: "80%" },
-                    { skill: "Treatment Planning", value: "85%" },
-                    { skill: "Manual Therapy Techniques", value: "98%" },
-                    { skill: "Exercise Prescription", value: "92%" },
-                    { skill: "Electrotherapy Skill", value: "90%" },
-                    { skill: "Interpersonal Skills", value: "86%" },
+                    { skill: "Clinical Assessment & Diagnosis", value: "95%" },
+                    {
+                      skill: "Manual Therapy & Soft Tissue Techniques",
+                      value: "95%",
+                    },
+                    {
+                      skill: "Chronic Pain Education & Management",
+                      value: "92%",
+                    },
+                    {
+                      skill: "Exercise Therapy & Rehabilitation",
+                      value: "94%",
+                    },
+                    { skill: "Posture & Movement Retraining", value: "90%" },
+                    {
+                      skill: "Women’s Health & Pelvic Floor Care",
+                      value: "88%",
+                    },
                   ].map((item, i) => (
                     <motion.div
                       className="mb-4"
@@ -271,11 +328,13 @@ const Therapist = () => {
                     </div>
                     <div>
                       <h3 className="heading dark-text mb-4 pb-3">
-                        Ready to start your journey to recovery?
+                        Ready to move better, live stronger?
                       </h3>
                       <p className="mb-4 para pb-3">
-                        Contact us today to schedule your initial consultation
-                        and take the first step towards a pain-free life.
+                        Book your initial consultation at MAXFIT Physiotherapy
+                        and receive a personalised, evidence-based plan to
+                        relieve pain, restore movement, and build long-term
+                        confidence in your body.
                       </p>
                       <CustomButton
                         text="Book Appointment"
@@ -288,6 +347,13 @@ const Therapist = () => {
             </div>
           </div>
         </section>
+
+        {/* FAQ section */}
+<section className="py-5 position-relative about-section">
+  <div className="container position-relative z-1">
+    <FAQAccordion items={faqData} />
+  </div>
+</section>
 
         {/* Review */}
         <ReviewSection />

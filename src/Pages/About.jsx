@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { pageBannerData } from "../Constants/Data";
-import AboutUs from "../Components/AboutUs";
-import Banner from "../Components/Banner";
-import ScrollingInfo from "../Components/ScrollingInfo";
-import StatisticsBanner from "../Components/StatisticsBanner";
-import CustomButton from "../Components/Button";
-import ServiceCard from "../Components/ServiceCard";
-import ReviewSection from "../Components/ReviewSection";
+import AboutUs from "../components/AboutUs";
+import Banner from "../components/Banner";
+import ScrollingInfo from "../components/ScrollingInfo";
+import StatisticsBanner from "../components/StatisticsBanner";
+import CustomButton from "../components/Button";
+import ServiceCard from "../components/ServiceCard";
+import ReviewSection from "../components/ReviewSection";
 import { Figure } from "react-bootstrap";
 import videoIm from "../assets/Images/quality-treatment-video-img.jpg";
 import vision1 from "../assets/Images/icon-service-1.svg";
@@ -27,26 +27,26 @@ const processSteps = [
   {
     id: 1,
     img: process1,
-    title: "Get Paired With A Therapist",
-    desc: "We understand that injuries and acute pain can happen unexpectedly.",
+    title: "Understand Your Story",
+    desc: "We begin with a detailed conversation about your pain, health history, lifestyle, and goals-because physiotherapy is a partnership, not a quick fix.",
   },
   {
     id: 2,
     img: process2,
-    title: "Choose Your Preferred Way To Receive Care",
-    desc: "We understand that injuries and acute pain can happen unexpectedly.",
+    title: "Assess & Identify the Cause",
+    desc: "We assess movement, strength, posture, and function to understand what’s driving your symptoms-then explain your condition clearly and confidently.",
   },
   {
     id: 3,
     img: process3,
-    title: "We Help You Get Better, Faster!",
-    desc: "We understand that injuries and acute pain can happen unexpectedly.",
+    title: "Treat & Relieve Pain",
+    desc: "Using evidence-based care such as manual therapy, gentle mobility work, and targeted strategies, we reduce pain, improve movement, and restore comfort safely.",
   },
   {
     id: 4,
-    img: process1,
-    title: "What Psychotherapy Can Help With",
-    desc: "We understand that injuries and acute pain can happen unexpectedly.",
+    img: process4,
+    title: "Rehab, Retrain & Prevent",
+    desc: "You’ll receive a personalised exercise plan and movement retraining to rebuild strength, prevent flare-ups, and maintain long-term mobility and independence.",
   },
 ];
 
@@ -89,55 +89,150 @@ const About = () => {
     <>
       <Helmet>
         {/* Basic SEO */}
-        <title>Maxfit</title>
+        <title>
+          About Us | MAXFIT Physiotherapy | Personalised Physiotherapy &
+          Rehabilitation Care
+        </title>
+
         <meta
           name="description"
-          content="Get personalized diet plans, expert tips, and nutritional guidance from certified dietitians. Start your health journey today!"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
+
         <meta
           name="keywords"
-          content="Tamildietitian, Dietitian Anu, Gut Detox, Gut Expert, Collagen Expert, Nutrition, Detox Diet, Anti-inflammatory diet, Holistic health, Wellness retreat, Cellular Nutrition, Cellular Detox, Gut health"
+          content="maxfit physiotherapy, physiotherapy near me, physiotherapy clinic near me, physiotherapy treatment, musculoskeletal physiotherapy, women’s health physiotherapy, elderly physiotherapy care, physiotherapy for arthritis, physiotherapy exercises, physiotherapy exercises for lower back pain, basic physiotherapy exercises, physical therapist vs physiotherapist, what is matrix therapy in physiotherapy, physiotherapy machine, chest physiotherapy, injury rehabilitation physiotherapy, chronic pain physiotherapy, post injury physiotherapy care, evidence based physiotherapy, personalised physiotherapy treatment"
         />
+
+        <meta name="author" content="MAXFIT Physiotherapy" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://maxfitphysiotherapy.com.au/" />
 
         {/* Open Graph */}
         <meta
           property="og:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy | Expert, Personalised Physiotherapy Care"
         />
         <meta
           property="og:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dietitiananu.com.au" />
+        <meta property="og:url" content="https://maxfitphysiotherapy.com/" />
+        <meta property="og:site_name" content="MAXFIT Physiotherapy" />
+
+        {/* Social Links */}
         <meta
-          property="og:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
+          property="og:see_also"
+          content="https://www.instagram.com/maxfit.physiotherapy/"
+        />
+        <meta
+          property="og:see_also"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
+        {/* Facebook  */}
+        <meta property="fb:app_id" content="#" />
         <meta
-          name="twitter:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          property="fb:admins"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
+
+        {/* Instagram */}
+        <meta name="instagram:title" content="MAXFIT Physiotherapy" />
         <meta
-          name="twitter:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          name="instagram:description"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
-        <meta
-          name="twitter:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
-        />
-        <meta name="twitter:site" content="@anu_collagen24" />
-        <meta name="twitter:creator" content="@anu_collagen24" />
+        <meta name="instagram:site" content="maxfit.physiotherapy" />
       </Helmet>
+
       <div className="container-fluid p-0">
         {/* Banner Section */}
         <Banner bannerData={pageBannerData.about} />
 
         {/* About  Content */}
         <AboutUs />
+
+        {/* more about therapist */}
+        <section>
+          <div className="container mb-5">
+            <div className="row align-items-start">
+              <h2 className="fw-bold mb-3">About Your Physiotherapist</h2>
+              <h5 className="text-muted mb-3">
+                The Journey of <strong>Priyanka Verma</strong> - Founder of
+                MAXFIT Physiotherapy
+              </h5>
+              <p>
+                From a young age, <strong>Priyanka Verma</strong> believed that
+                movement is one of the most powerful forms of medicine. Growing
+                up, she was surrounded by people facing pain, mobility
+                challenges, and the frustration of losing independence. She saw
+                how deeply these struggles affected not just the body, but
+                confidence, identity, and quality of life. Those early
+                observations planted a quiet but determined seed - she wanted to
+                help people move freely again.
+              </p>
+
+              <p>
+                Her journey into physiotherapy began in Delhi, where she
+                completed her
+                <strong> Bachelor of Physiotherapy at Delhi University</strong>.
+                Those formative years shaped her understanding of human
+                resilience and how even small improvements in movement could
+                transform a person’s entire day. Her passion for deeper clinical
+                knowledge led her to complete a
+                <strong> Master of Physiotherapy (Neurology)</strong> from Jamia
+                Hamdard University, building a strong foundation in neurological
+                rehabilitation and complex patient care.
+              </p>
+
+              <p>
+                Seeking global exposure and advanced training, Priyanka moved to
+                Australia to complete her{" "}
+                <strong>Master of Physiotherapy</strong> at the University of
+                Sydney. Here, her approach evolved into a holistic model -
+                blending science with empathy, research with intuition, and
+                clinical expertise with genuine human connection.
+              </p>
+
+              <p>
+                With over <strong>20 years of experience</strong> across private
+                practices, rehabilitation centres, and aged-care facilities,
+                Priyanka recognised a recurring truth: patients wanted not just
+                treatment, but understanding. Someone who would listen, guide,
+                and walk beside them through their healing journey.
+              </p>
+
+              <p>
+                Her clinical growth continued through advanced training in
+                pelvic floor therapy, dry needling, chronic pain management,
+                WorkCover rehabilitation, and musculoskeletal care. These skills
+                strengthened her ability to support women’s health clients,
+                older adults, and individuals living with persistent pain.
+              </p>
+
+              <p>
+                <strong>MAXFIT Physiotherapy</strong> was born from this vision
+                - a place where patients feel heard, respected, and supported.
+                Where evidence-based care meets warmth, and every treatment plan
+                is tailored to the individual’s story, goals, and lifestyle.
+              </p>
+
+              <p>
+                Today, Priyanka is known for her calm presence, thorough
+                assessments, and sincere commitment to wellbeing. For her,
+                physiotherapy is more than a profession -{" "}
+                <strong>it is a calling</strong>.
+              </p>
+
+              <p className="fw-semibold">
+                Through MAXFIT Physiotherapy, she continues to transform lives -
+                one movement at a time.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* Statistics Banner */}
         <StatisticsBanner />
@@ -167,8 +262,8 @@ const About = () => {
               viewport={{ once: true }}
             >
               <p className="display-5 fw-bold">
-                <span className="light-text">We're a Recognized </span>
-                <span className="dark-text">& Quality Leader</span>
+                <span className="light-text">From Clear Vision </span>
+                <span className="dark-text">to Confident Movement</span>
               </p>
             </motion.div>
 
@@ -190,18 +285,18 @@ const About = () => {
               {[
                 {
                   img: vision1,
-                  title: "Manual Therapy",
-                  desc: "We understand that injuries and acute pain can unexpectedly. Our emergency that injuries and acute pain can unexpectedly. Our emergency physiotherapy.derstand that injuries and acute pain can unexpectedly..",
+                  title: "Our Vision",
+                  desc: "To help people of all ages move better, live stronger, and maintain independence through compassionate, personalised, and evidence-based physiotherapy care.",
                 },
                 {
                   img: vision2,
-                  title: "Chronic Pain",
-                  desc: "We understand that injuries and acute pain can unexpectedly. Our emergency that injuries and acute pain can unexpectedly. Our emergency physiotherapy.derstand that injuries and acute pain can unexpectedly.",
+                  title: "Our Approach",
+                  desc: "We go beyond quick fixes. By understanding your pain, goals, and daily challenges, we create tailored treatment plans that address the root cause-not just the symptoms.",
                 },
                 {
                   img: vision3,
-                  title: "Hand Therapy",
-                  desc: "We understand that injuries and acute pain can unexpectedly. Our emergency that injuries and acute pain can unexpectedly. Our emergency physiotherapy.derstand that injuries and acute pain can unexpectedly.",
+                  title: "Your Victory",
+                  desc: "Reduced pain, restored movement, and renewed confidence. Our goal is to help you return to daily life, work, and activities with strength, clarity, and long-term wellbeing.",
                 },
               ].map((item, idx) => (
                 <motion.div
@@ -233,24 +328,18 @@ const About = () => {
                   {[
                     {
                       img: vision1,
-                      title: "Manual Therapy",
-                      desc: "We understand that injuries and acute pain can unexpectedly. Our emergency that injuries and acute pain can unexpectedly. Our emergency physiotherapy.derstand that injuries and acute pain can unexpectedly..",
+                      title: "Our Vision",
+                      desc: "To help people of all ages move better, live stronger, and maintain independence through compassionate, personalised, and evidence-based physiotherapy care.",
                     },
                     {
                       img: vision2,
-                      title: "Chronic Pain",
-                      desc: "We understand that injuries and acute pain can unexpectedly. Our emergency that injuries and acute pain can unexpectedly. Our emergency physiotherapy.derstand that injuries and acute pain can unexpectedly.",
+                      title: "Our Approach",
+                      desc: "We go beyond quick fixes. By understanding your pain, goals, and daily challenges, we create tailored treatment plans that address the root cause-not just the symptoms.",
                     },
                     {
                       img: vision3,
-                      title: "Hand Therapy",
-                      desc: "We understand that injuries and acute pain can unexpectedly. Our emergency that injuries and acute pain can unexpectedly. Our emergency physiotherapy.derstand that injuries and acute pain can unexpectedly.",
-                    },
-                    {
-                      img: vision1,
-                      title: "Ready To Start Your Journey To Recovery?",
-                      desc: "Contact us today to schedule your initial consultation and take the first step towards a pain-free life.",
-                      isCTA: true,
+                      title: "Your Victory",
+                      desc: "Reduced pain, restored movement, and renewed confidence. Our goal is to help you return to daily life, work, and activities with strength, clarity, and long-term wellbeing.",
                     },
                   ].map((service, index) => (
                     <div
@@ -285,6 +374,8 @@ const About = () => {
                               <CustomButton
                                 text="View All Services"
                                 icon={<i className="bi bi-arrow-right"></i>}
+                                href="/physiotherapist"
+                                ariaLabel="Explore physiotherapy services"
                               />
                             </div>
                           </motion.div>
@@ -341,13 +432,15 @@ const About = () => {
                 <CustomButton
                   text="View All Services"
                   icon={<i className="bi bi-arrow-right"></i>}
+                  href="/physiotherapist"
+                  ariaLabel="Explore physiotherapy services"
                 />
               </div>
             </motion.div>
           </div>
         </section>
-        {/* solution to your plan*/}
 
+        {/* solution to your plan*/}
         <section className="py-5 white-back">
           <div className="container">
             <div className="row align-items-center">
@@ -389,7 +482,7 @@ const About = () => {
                   viewport={{ once: true }}
                 >
                   <h6 className="bg-white mb-3 light-text py-2 px-3 rounded-5 heading text-center text-lg-start">
-                    Solution To Your Plan
+                    Quality Treatment
                   </h6>
                 </motion.div>
 
@@ -402,11 +495,10 @@ const About = () => {
                   viewport={{ once: true }}
                 >
                   <h2 className="display-5 fw-bold mb-4 heading">
-                    <span className="light-text">We Proudly </span>
+                    <span className="light-text">Solution to Your Pain</span>
                     <span className="dark-text">
                       {" "}
-                      Give <br className="d-none d-lg-block" /> Quality
-                      Treatment{" "}
+                      With <br /> Personalised Care
                     </span>
                   </h2>
                 </motion.div>
@@ -419,10 +511,10 @@ const About = () => {
                   transition={{ duration: 0.8, delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  We understand that injuries and acute pain can happen
-                  unexpectedly. Our emergency physiotherapy services are
-                  designed to provide prompt and effective care to help you
-                  manage.
+                  At MAXFIT Physiotherapy, we take time to understand your pain,
+                  goals, and daily challenges-then create an evidence-based plan
+                  that treats the root cause, not just the symptoms, for
+                  long-lasting results.
                 </motion.p>
 
                 {/* Bullet Points */}
@@ -441,9 +533,9 @@ const About = () => {
                   viewport={{ once: true }}
                 >
                   {[
-                    "can happen unexpectedly Our emergency.", 
-                    "We understand that injuries.",
-                    "We understand that injuries.",
+                    "Thorough assessment and a clear, goal-based treatment plan.",
+                    "Hands-on therapy combined with targeted exercise rehabilitation.",
+                    "Movement retraining and education to prevent pain from returning.",
                   ].map((point, i) => (
                     <motion.div
                       key={i}
@@ -475,7 +567,7 @@ const About = () => {
             <div className="d-flex align-items-center justify-content-center text-center mb-5">
               <p className="display-5 fw-bold">
                 <span className="light-text">What </span>
-                <span className="dark-text">is Therapy Process</span>
+                <span className="dark-text">Our Therapy Process</span>
               </p>
             </div>
             <div className="d-flex justify-content-center align-items-center col-md-9 position-relative process-container-top">

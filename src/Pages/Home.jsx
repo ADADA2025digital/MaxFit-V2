@@ -3,13 +3,13 @@ import { Carousel } from "bootstrap";
 import { Figure } from "react-bootstrap";
 import { motion } from "framer-motion";
 import heroVideo from "../assets/Videos/hero-bg-video.mp4";
-import CustomButton from "../Components/Button";
-import AboutUs from "../Components/AboutUs";
-import ServiceCard from "../Components/ServiceCard";
-import ReviewSection from "../Components/ReviewSection";
-import NewsBlogCard from "../Components/NewsBlogCard";
-import HeroFeatureCard from "../Components/HeroFeatureCard";
-import ScrollingInfo from "../Components/ScrollingInfo";
+import CustomButton from "../components/Button";
+import AboutUs from "../components/AboutUs";
+import ServiceCard from "../components/ServiceCard";
+import ReviewSection from "../components/ReviewSection";
+import NewsBlogCard from "../components/NewsBlogCard";
+import HeroFeatureCard from "../components/HeroFeatureCard";
+import ScrollingInfo from "../components/ScrollingInfo";
 import {
   galleryData,
   statisticsData,
@@ -18,23 +18,18 @@ import {
   heroFeaturesData,
   whyUsLeftData,
   whyUsRightData,
-} from "../Constants/Data";
-import useCounterAnimation from "../Hooks/useCounterAnimation";
+  services,
+} from "../constants/Data";
+import useCounterAnimation from "../hooks/useCounterAnimation";
 import solutionPlanImg1 from "../assets/Images/solution-plan-img-1.jpg";
 import solutionPlanImg2 from "../assets/Images/solution-plan-img-2.jpg";
-import servicicon1 from "../assets/Images/icon-service-1.svg";
-import servicicon2 from "../assets/Images/icon-service-2.svg";
-import servicicon3 from "../assets/Images/icon-service-3.svg";
-import servicicon4 from "../assets/Images/icon-service-4.svg";
-import servicicon5 from "../assets/Images/icon-service-5.svg";
-import servicicon6 from "../assets/Images/icon-service-6.svg";
 import servicicon7 from "../assets/Images/icon-cta.svg";
 import whyUsImg from "../assets/Images/why-us-img.png";
 import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const counters = statisticsData.map((stat) =>
-    useCounterAnimation(stat.targetValue, 2000, 0)
+    useCounterAnimation(stat.targetValue, 2000, 0),
   );
 
   const [inView1, setInView1] = useState(false);
@@ -57,7 +52,7 @@ const Home = () => {
       {
         threshold: 0.3,
         rootMargin: "0px 0px -100px 0px",
-      }
+      },
     );
 
     if (imageRef1.current) observer.observe(imageRef1.current);
@@ -86,57 +81,85 @@ const Home = () => {
     return () => instance?.dispose();
   }, []);
 
+  const ctaCard = {
+    img: servicicon7,
+    title: "Ready to feel better and move with confidence?",
+    description:
+      "Book your appointment today and receive personalised, evidence-based care focused on long-term results.",
+  };
+
+  // Desktop layout: row1 = first 4, row2 = next 2 + CTA
+  const desktopRow1 = services.slice(0, 4);
+  const desktopRow2 = services.slice(4, 6);
+
+  // Mobile carousel: all services + CTA
+  const mobileSlides = [...services, ctaCard];
+
   return (
     <>
       <Helmet>
         {/* Basic SEO */}
-        <title>Maxfit</title>
+        <title>
+          MAXFIT Physiotherapy | Personalised Physiotherapy & Rehabilitation
+          Care
+        </title>
+
         <meta
           name="description"
-          content="Get personalized diet plans, expert tips, and nutritional guidance from certified dietitians. Start your health journey today!"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
+
         <meta
           name="keywords"
-          content="Tamildietitian, Dietitian Anu, Gut Detox, Gut Expert, Collagen Expert, Nutrition, Detox Diet, Anti-inflammatory diet, Holistic health, Wellness retreat, Cellular Nutrition, Cellular Detox, Gut health"
+          content="maxfit physiotherapy, physiotherapy near me, physiotherapy clinic near me, physiotherapy treatment, musculoskeletal physiotherapy, women’s health physiotherapy, elderly physiotherapy care, physiotherapy for arthritis, physiotherapy exercises, physiotherapy exercises for lower back pain, basic physiotherapy exercises, physical therapist vs physiotherapist, what is matrix therapy in physiotherapy, physiotherapy machine, chest physiotherapy, injury rehabilitation physiotherapy, chronic pain physiotherapy, post injury physiotherapy care, evidence based physiotherapy, personalised physiotherapy treatment"
         />
+
+        <meta name="author" content="MAXFIT Physiotherapy" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://maxfitphysiotherapy.com.au/" />
 
         {/* Open Graph */}
         <meta
           property="og:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy | Expert, Personalised Physiotherapy Care"
         />
         <meta
           property="og:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dietitiananu.com.au" />
+        <meta property="og:url" content="https://maxfitphysiotherapy.com/" />
+        <meta property="og:site_name" content="MAXFIT Physiotherapy" />
+
+        {/* Social Links */}
         <meta
-          property="og:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
+          property="og:see_also"
+          content="https://www.instagram.com/maxfit.physiotherapy/"
+        />
+        <meta
+          property="og:see_also"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
+        {/* Facebook  */}
+        <meta property="fb:app_id" content="#" />
         <meta
-          name="twitter:title"
-          content="Dietitian Anu - Your Weight Loss Mentor & Gut Health Advocate."
+          property="fb:admins"
+          content="https://www.facebook.com/maxfitphysiotherapy/"
         />
+
+        {/* Instagram */}
+        <meta name="instagram:title" content="MAXFIT Physiotherapy" />
         <meta
-          name="twitter:description"
-          content="Your Weight Loss Mentor & Gut Health Advocate."
+          name="instagram:description"
+          content="MAXFIT Physiotherapy provides personalised, evidence-based care for injuries, mobility, women’s health, led by physiotherapist Priyanka Verma."
         />
-        <meta
-          name="twitter:image"
-          content="https://dietitiananu.com.au/assets/image1-BSFppmib.png"
-        />
-        <meta name="twitter:site" content="@anu_collagen24" />
-        <meta name="twitter:creator" content="@anu_collagen24" />
+        <meta name="instagram:site" content="maxfit.physiotherapy" />
       </Helmet>
 
       <div className="container-fluid p-0">
         {/* Hero Section */}
-        <section className="hero-section position-relative vh-100 align-items-center d-flex justify-content-center ">
+        <section className="hero-section position-relative py-5 vh-100 align-items-center d-flex justify-content-center ">
           <video
             className="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
             autoPlay
@@ -152,16 +175,16 @@ const Home = () => {
 
           {/* Hero Content */}
           <div className=" position-relative text-center text-white d-flex flex-column align-items-center justify-content-center h-100 px-3 px-md-0 ">
-            <div className="pb-0 pt-5">
+            <div className="pb-0 pb-md-5 pt-0 pt-md-5">
               {/* Welcome Badge */}
               <motion.div
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="d-flex align-items-center justify-content-center mb-3 pt-lg-5 pt-0 mt-0 mt-lg-5"
+                className="d-flex align-items-center justify-content-center mb-3"
               >
                 <h6 className="white-back mb-3 light-text py-2 px-3 rounded-5 heading mt-0 mt-md-4">
-                  Welcome to Physiocare
+                  Welcome to MAXFIT Physiotherapy
                 </h6>
               </motion.div>
 
@@ -172,9 +195,9 @@ const Home = () => {
                 transition={{ duration: 1, delay: 0.2 }}
                 className="d-flex align-items-center justify-content-center"
               >
-                <p className="display-2 fw-bold">
+                <p className="display-1 fw-bold">
                   <span className="text-white heading">
-                    Destination For <br /> Relief & Wellness
+                    Move Better <br /> Live Stronger
                   </span>
                 </p>
               </motion.div>
@@ -186,12 +209,17 @@ const Home = () => {
                 transition={{ duration: 1, delay: 0.4 }}
                 className="d-flex align-items-center justify-content-center mt-3"
               >
-                <p className="text-white ">
-                  It is a long established fact that a reader will be distracted
-                  by the readable content <br />
-                  of a page when looking at layout. The point of using Lorem
-                  Ipsum is less normal <br />
-                  distribution of letters.
+                <p className="text-white h5 lh-base">
+                  Personalised, evidence-based physiotherapy to relieve pain,
+                  restore mobility,
+                  <br />
+                  and help you return to the activities you love - with care you
+                  can trust.
+                  <br />
+                  <span className="fw-semibold">
+                    Supporting all ages with personalised care, from recovery{" "}
+                    <br /> to long-term wellbeing.
+                  </span>
                 </p>
               </motion.div>
 
@@ -205,11 +233,18 @@ const Home = () => {
                 <CustomButton
                   text="Explore Services"
                   icon={<i className="bi bi-arrow-right"></i>}
+                  href="/physiotherapist"
+                  ariaLabel="Explore physiotherapy services"
                 />
                 <button className="custom-button d-flex align-items-center gap-3 light-text rounded-5 py-1 px-3 position-relative overflow-hidden border-0 bg-white">
-                  <span className="custom-button-content position-relative z-1 fw-bold">
-                    Book Apppointment
-                  </span>
+                  <a
+                    href="tel:0433 642 826"
+                    className="custom-button-content position-relative z-1 fw-bold text-decoration-none text-dark"
+                    aria-label="Call MAXFIT Physiotherapy to book an appointment"
+                  >
+                    Book Appointment
+                  </a>
+
                   <span className="btn-icon icon-container z-1 d-flex align-items-center justify-content-center  rounded-circle">
                     <i className="bi bi-arrow-right text-white"></i>
                   </span>
@@ -253,7 +288,7 @@ const Home = () => {
                         />
                       </Figure>
                     </div>
-                  ))
+                  )),
                 )}
               </div>
             </div>
@@ -272,7 +307,7 @@ const Home = () => {
               className="d-flex align-items-center justify-content-center justify-content-md-start mb-3 text-center text-md-start"
             >
               <h6 className="white-back mb-3 light-text py-2 px-3 rounded-5">
-                Therapist Team
+                Our Services
               </h6>
             </motion.div>
 
@@ -285,54 +320,29 @@ const Home = () => {
               className="col-12 d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between text-center text-md-start"
             >
               <div className="display-5 fw-bold mb-3 mb-md-5 col-12 col-md-8 heading">
-                <span className="light-text">We Provide</span>
+                <span className="light-text">Quality Care for</span>
                 <span className="dark-text">
                   {" "}
-                  The Best <br className="d-none d-md-block" /> Services
+                  Pain Relief & <br className="d-none d-md-block" /> Better
+                  Movement
                 </span>
               </div>
+
               <div className="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center justify-content-md-end">
                 <CustomButton
                   text="View All Services"
                   icon={<i className="bi bi-arrow-right"></i>}
+                  href="/physiotherapist"
+                  ariaLabel="View all physiotherapy services"
                 />
               </div>
             </motion.div>
 
             {/* Desktop cards row 1 */}
             <div className="row g-4 mb-2 d-none d-md-flex">
-              {[servicicon1, servicicon2, servicicon3, servicicon4].map(
-                (img, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: index * 0.2 }}
-                    viewport={{ once: true }}
-                    className="col-12 col-sm-6 col-lg-3"
-                  >
-                    <ServiceCard
-                      imageSrc={img}
-                      title={
-                        [
-                          "Manual Therapy",
-                          "Chronic Pain",
-                          "Hand Therapy",
-                          "Sports Therapy",
-                        ][index]
-                      }
-                      description="We understand that injuries and acute pain can unexpectedly. Our emergency physiotherapy."
-                    />
-                  </motion.div>
-                )
-              )}
-            </div>
-
-            {/* Desktop cards row 2 */}
-            <div className="row g-4 mt-3 d-none d-md-flex">
-              {[servicicon5, servicicon6].map((img, index) => (
+              {desktopRow1.map((service, index) => (
                 <motion.div
-                  key={index}
+                  key={service.title}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: index * 0.2 }}
@@ -340,14 +350,34 @@ const Home = () => {
                   className="col-12 col-sm-6 col-lg-3"
                 >
                   <ServiceCard
-                    imageSrc={img}
-                    title={["Cupping Therapy", "Laser Therapy"][index]}
-                    description="We understand that injuries and acute pain can unexpectedly. Our emergency physiotherapy."
+                    imageSrc={service.img}
+                    title={service.title}
+                    description={service.description}
+                  />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Desktop cards row 2 */}
+            <div className="row g-4 mt-3 d-none d-md-flex">
+              {desktopRow2.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  className="col-12 col-sm-6 col-lg-3"
+                >
+                  <ServiceCard
+                    imageSrc={service.img}
+                    title={service.title}
+                    description={service.description}
                   />
                 </motion.div>
               ))}
 
-              {/* Last wide card */}
+              {/* Last wide CTA card */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -356,14 +386,16 @@ const Home = () => {
                 className="col-12 col-lg-6"
               >
                 <ServiceCard
-                  imageSrc={servicicon7}
-                  title="Ready to start your journey to recovery?"
-                  description="We understand that injuries and acute pain can unexpectedly. Our emergency physiotherapy.."
+                  imageSrc={ctaCard.img}
+                  title={ctaCard.title}
+                  description={ctaCard.description}
                   center={true}
                   customButton={
                     <CustomButton
-                      text="View All Services"
+                      text="Book Appointment"
                       icon={<i className="bi bi-arrow-right"></i>}
+                      href="/contact-us"
+                      ariaLabel="Book an appointment with Maxfit Physiotherapy"
                     />
                   }
                 />
@@ -378,42 +410,36 @@ const Home = () => {
                 data-bs-ride="carousel"
               >
                 <div className="carousel-inner">
-                  {[
-                    { img: servicicon1, title: "Manual Therapy" },
-                    { img: servicicon2, title: "Chronic Pain" },
-                    { img: servicicon3, title: "Hand Therapy" },
-                    { img: servicicon4, title: "Sports Therapy" },
-                    { img: servicicon5, title: "Cupping Therapy" },
-                    { img: servicicon6, title: "Laser Therapy" },
-                    {
-                      img: servicicon7,
-                      title: "Ready to start your journey to recovery?",
-                    },
-                  ].map((service, index) => (
-                    <div
-                      key={index}
-                      className={`carousel-item ${index === 0 ? "active" : ""}`}
-                    >
-                      <ServiceCard
-                        imageSrc={service.img}
-                        title={service.title}
-                        description="We understand that injuries and acute pain can unexpectedly. Our emergency physiotherapy."
-                        center={service.title.includes("Ready")}
-                        customButton={
-                          service.title.includes("Ready") && (
-                            <CustomButton
-                              text="View All Services"
-                              icon={<i className="bi bi-arrow-right"></i>}
-                            />
-                          )
-                        }
-                      />
-                    </div>
-                  ))}
+                  {mobileSlides.map((service, index) => {
+                    const isCTA = service.title.includes("Ready to");
+                    return (
+                      <div
+                        key={service.title}
+                        className={`carousel-item ${index === 0 ? "active" : ""}`}
+                      >
+                        <ServiceCard
+                          imageSrc={service.img}
+                          title={service.title}
+                          description={service.description}
+                          center={isCTA}
+                          customButton={
+                            isCTA && (
+                              <CustomButton
+                                text="Book Appointment"
+                                icon={<i className="bi bi-arrow-right"></i>}
+                                href="/contact-us"
+                                ariaLabel="Book an appointment with Maxfit Physiotherapy"
+                              />
+                            )
+                          }
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
 
                 <div className="carousel-indicators mt-4">
-                  {new Array(7).fill(null).map((_, idx) => (
+                  {new Array(mobileSlides.length).fill(null).map((_, idx) => (
                     <button
                       key={idx}
                       type="button"
@@ -482,7 +508,7 @@ const Home = () => {
                   className="d-flex align-items-center justify-content-center justify-content-lg-start mb-3"
                 >
                   <h6 className="bg-white mb-3 light-text py-2 px-3 rounded-5 heading">
-                    Solution To Your Plan
+                    Quality Treatment
                   </h6>
                 </motion.div>
 
@@ -494,10 +520,10 @@ const Home = () => {
                   className="mb-4"
                 >
                   <h2 className="display-5 fw-bold mb-4 heading">
-                    <span className="light-text">We Proudly </span>
+                    <span className="light-text">Solution to Your Pain</span>
                     <span className="dark-text">
                       {" "}
-                      Give <br /> Quality Treatment{" "}
+                      With <br /> Personalised Care
                     </span>
                   </h2>
                 </motion.div>
@@ -510,10 +536,10 @@ const Home = () => {
                   className="mb-4 para mx-auto mx-lg-0"
                   style={{ maxWidth: "500px" }}
                 >
-                  We understand that injuries and acute pain can happen
-                  unexpectedly. Our emergency physiotherapy services are
-                  designed to provide prompt and effective care to help you
-                  manage.
+                  At MAXFIT Physiotherapy, we take time to understand your pain,
+                  goals, and daily challenges-then create an evidence-based plan
+                  that treats the root cause, not just the symptoms, for
+                  long-lasting results.
                 </motion.p>
 
                 {/* Bullet Points */}
@@ -526,16 +552,25 @@ const Home = () => {
                 >
                   <div className="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
                     <i className="bi bi-check-circle-fill me-2 me-lg-3 dark-text"></i>
-                    <span>can happen unexpectedly Our emergency.</span>
+                    <span>
+                      Thorough assessment and a clear, goal-based treatment
+                      plan.
+                    </span>
                   </div>
                   <div className="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
                     <i className="bi bi-check-circle-fill me-2 me-lg-3 dark-text"></i>
-                    <span>We understand that injuries.</span>
+                    <span>
+                      Hands-on therapy combined with targeted exercise
+                      rehabilitation.
+                    </span>
                   </div>
 
                   <div className="d-flex align-items-center justify-content-center justify-content-lg-start mb-2">
                     <i className="bi bi-check-circle-fill me-2 me-lg-3 dark-text"></i>
-                    <span>We understand that injuries.</span>
+                    <span>
+                      Movement retraining and education to prevent pain from
+                      returning.
+                    </span>
                   </div>
                 </motion.div>
 
@@ -599,11 +634,11 @@ const Home = () => {
 
             <div className="d-flex align-items-center justify-content-center text-center mb-1 mb-md-5 ">
               <p className="display-5 fw-bold heading">
-                <span className="light-text">Excellence In </span>
+                <span className="light-text">Why Choose </span>
                 <span className="dark-text">
                   {" "}
-                  Care And <br />
-                  Rehabilitation
+                  MAXFIT <br />
+                  Physiotherapy
                 </span>
               </p>
             </div>
@@ -630,9 +665,8 @@ const Home = () => {
                       <h5 className="dark-text fw-bold heading">
                         {item.title}
                       </h5>
-                      <p className="para">
-                        We understand that injuries and acute <br /> pain can
-                        unexpectedly.
+                      <p className="para" style={{ whiteSpace: "pre-line" }}>
+                        {item.description}
                       </p>
                     </motion.div>
                   </div>
@@ -661,9 +695,11 @@ const Home = () => {
                       <h5 className="text-white text-md-end fw-bold heading">
                         {item.title}
                       </h5>
-                      <p className="text-white text-md-end">
-                        We understand that injuries and acute <br /> pain can
-                        unexpectedly.
+                      <p
+                        className="text-white text-md-end"
+                        style={{ whiteSpace: "pre-line" }}
+                      >
+                        {item.description}
                       </p>
                     </motion.div>
                   </div>
@@ -710,7 +746,7 @@ const Home = () => {
             >
               <p className="display-5 fw-bold heading">
                 <span className="text-white heading">
-                  Where Do You Need Attention?
+                  Where Are You Experiencing Pain?
                 </span>
               </p>
             </motion.div>
@@ -724,9 +760,11 @@ const Home = () => {
               viewport={{ once: true }}
             >
               <p className="text-white">
-                We understand that injuries and acute pain can happen
-                unexpectedly. Our emergency physiotherapy services are designed
-                to <br /> provide prompt and effective care to help you manage.
+                From neck stiffness to ankle injuries, our physiotherapy
+                treatments focus on relieving pain, restoring movement, and{" "}
+                <br />
+                preventing future problems - with personalised, evidence-based
+                care.
               </p>
             </motion.div>
             {/* Pain Types Grid */}
@@ -858,6 +896,8 @@ const Home = () => {
                 <CustomButton
                   text="View All Blog"
                   icon={<i className="bi bi-arrow-right"></i>}
+                  href="/blog"
+                  ariaLabel="View all blog articles"
                 />
               </div>
             </motion.div>
